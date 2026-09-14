@@ -1,21 +1,18 @@
 import { useRef, useEffect } from 'react';
-import {
-  Home, User, Briefcase, Code, Mail,
-  Moon, Sun, X,
-} from 'lucide-react';
 
 export interface NavItem {
   id: string;
   label: string;
-  icon: React.ElementType;
+  /** Material Symbols icon name string */
+  icon: string;
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { id: 'home',     label: 'Overview',        icon: Home },
-  { id: 'about',    label: 'Personal info',   icon: User },
-  { id: 'projects', label: 'Projects & work', icon: Briefcase },
-  { id: 'skills',   label: 'Skills & tools',  icon: Code },
-  { id: 'contact',  label: 'Contact & links', icon: Mail },
+  { id: 'home',     label: 'Overview',        icon: 'home' },
+  { id: 'about',    label: 'Personal info',   icon: 'person' },
+  { id: 'projects', label: 'Projects & work', icon: 'work' },
+  { id: 'skills',   label: 'Skills & tools',  icon: 'code' },
+  { id: 'contact',  label: 'Contact & links', icon: 'mail' },
 ];
 
 export interface SidebarProps {
@@ -28,9 +25,10 @@ export interface SidebarProps {
 }
 
 /**
- * Sidebar — navigation drawer that is:
- *   • always visible on md+ screens (static, no translate)
- *   • slide-in overlay on mobile with a backdrop
+ * Sidebar — navigation drawer.
+ *   • md+: always visible, static layout
+ *   • <md: slide-in overlay with backdrop
+ * All Lucide icons replaced with Google Material Symbols.
  */
 export default function Sidebar({
   isOpen,
@@ -42,7 +40,7 @@ export default function Sidebar({
 }: SidebarProps) {
   const sidebarRef = useRef<HTMLElement>(null);
 
-  // Close when clicking outside on mobile
+  // Close drawer when clicking the backdrop / outside the panel
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -59,15 +57,16 @@ export default function Sidebar({
 
   return (
     <>
-      {/* Mobile backdrop */}
+      {/* Mobile backdrop — tapping it closes the drawer */}
       {isOpen && (
         <div
           aria-hidden="true"
+          onClick={onClose}
           className="fixed inset-0 bg-black/40 dark:bg-black/60 z-30 md:hidden"
         />
       )}
 
-      {/* Drawer */}
+      {/* Drawer panel */}
       <aside
         ref={sidebarRef}
         id="nav-sidebar"
@@ -89,9 +88,9 @@ export default function Sidebar({
           <button
             onClick={onClose}
             aria-label="Close navigation menu"
-            className="ml-auto p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10"
+            className="ml-auto p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 flex items-center justify-center"
           >
-            <X size={24} />
+            <span className="material-symbols-outlined text-[#444746] dark:text-[#c4c7c5]">close</span>
           </button>
         </div>
 
@@ -99,25 +98,34 @@ export default function Sidebar({
         <nav className="p-3 space-y-1 overflow-y-auto flex-1">
           {NAV_ITEMS.map((item) => {
             const isActive = activeTab === item.id;
-            const Icon = item.icon;
             return (
               <button
                 key={item.id}
                 id={`nav-${item.id}`}
                 onClick={() => { onTabChange(item.id); onClose(); }}
                 className={`
-                  w-full flex items-center gap-4 px-4 py-3.5 rounded-full text-sm font-medium transition-all duration-200
+                  w-full flex items-center gap-4 px-4 py-3.5 rounded-full
+                  text-sm font-medium transition-all duration-200
                   ${isActive
                     ? 'bg-[#c2e7ff] text-[#001d35] dark:bg-[#004a77] dark:text-[#c2e7ff]'
                     : 'text-[#444746] dark:text-[#c4c7c5] hover:bg-[#f0f4f9] dark:hover:bg-[#303134]'
                   }
                 `}
               >
-                <Icon
-                  size={22}
-                  className={isActive ? 'text-[#001d35] dark:text-[#c2e7ff]' : 'text-[#444746] dark:text-[#c4c7c5]'}
-                  strokeWidth={isActive ? 2.5 : 2}
-                />
+                <span
+                  className={`material-symbols-outlined text-[22px] ${
+                    isActive
+                      ? 'text-[#001d35] dark:text-[#c2e7ff] filled'
+                      : 'text-[#444746] dark:text-[#c4c7c5]'
+                  }`}
+                  style={{
+                    fontVariationSettings: isActive
+                      ? "'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24"
+                      : "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24",
+                  }}
+                >
+                  {item.icon}
+                </span>
                 <span className="font-google-sans">{item.label}</span>
               </button>
             );
@@ -130,7 +138,9 @@ export default function Sidebar({
               onClick={onToggleDarkMode}
               className="w-full flex items-center gap-4 px-4 py-3.5 rounded-full text-sm font-medium text-[#444746] dark:text-[#c4c7c5] hover:bg-[#f0f4f9] dark:hover:bg-[#303134] transition-all"
             >
-              {isDarkMode ? <Sun size={22} /> : <Moon size={22} />}
+              <span className="material-symbols-outlined text-[22px]">
+                {isDarkMode ? 'light_mode' : 'dark_mode'}
+              </span>
               <span className="font-google-sans">{isDarkMode ? 'Light mode' : 'Dark mode'}</span>
             </button>
           </div>

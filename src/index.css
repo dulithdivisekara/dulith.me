@@ -1,18 +1,43 @@
-/* ─── Google Fonts (must precede all other statements) ───────────── */
+/* ─── Google Fonts + Material Symbols (must precede all other statements) ── */
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
-/* ─── Tailwind directives ─────────────────────────────────────────── */
+/* ─── Tailwind directives ─────────────────────────────────────────────────── */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ─── MD3 font utility classes ────────────────────────────────────── */
+/* ─── MD3 font & icon utility classes ────────────────────────────────────── */
 @layer utilities {
   .font-google-sans { font-family: 'Google Sans', sans-serif; }
   .font-roboto      { font-family: 'Roboto', sans-serif; }
 }
 
-/* ─── Base reset / tokens ─────────────────────────────────────────── */
+/* ─── Material Symbols base configuration ────────────────────────────────── */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  /* Default: 24px optical size, weight 400, no fill */
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+/* Filled variant — set FILL=1 */
+.material-symbols-outlined.filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ─── Base reset / tokens ─────────────────────────────────────────────────── */
 @layer base {
   *, *::before, *::after {
     box-sizing: border-box;
@@ -28,7 +53,7 @@
     padding: 0;
   }
 
-  /* ── Custom scrollbar ─────────────────────────────────────────── */
+  /* ── Custom scrollbar ────────────────────────────────────────────────── */
   ::-webkit-scrollbar       { width: 8px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: #dadce0; border-radius: 4px; }
@@ -38,14 +63,37 @@
   .dark ::-webkit-scrollbar-thumb:hover { background: #80868b; }
 }
 
-/* ─── Animations ──────────────────────────────────────────────────── */
+/* ─── MD3 Emphasized Decelerate animation curve ──────────────────────────── */
 @layer utilities {
   .animation-fade-in {
-    animation: fadeIn 0.4s ease-out forwards;
+    animation: md3FadeIn 0.5s cubic-bezier(0.05, 0.7, 0.1, 1.0) forwards;
   }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+@keyframes md3FadeIn {
+  from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── MD3 Ripple effect ──────────────────────────────────────────────────── */
+@layer utilities {
+  .md3-ripple {
+    position: relative;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .md3-ripple::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: currentColor;
+    opacity: 0;
+    border-radius: inherit;
+    transition: opacity 0.2s ease;
+  }
+
+  .md3-ripple:hover::after  { opacity: 0.05; }
+  .md3-ripple:active::after { opacity: 0.12; }
 }

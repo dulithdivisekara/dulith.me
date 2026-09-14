@@ -1,5 +1,3 @@
-import { Search, HelpCircle, Grid, Menu, Moon, Sun } from 'lucide-react';
-
 export interface HeaderProps {
   isDarkMode: boolean;
   searchQuery: string;
@@ -10,8 +8,8 @@ export interface HeaderProps {
 
 /**
  * Header — top app bar following the MD3 / Google Account style.
- * Contains the hamburger menu (mobile), branding, search bar,
- * utility icon buttons, and the user avatar.
+ * All Lucide icons replaced with Google Material Symbols spans.
+ * Search bar is hidden on screens < sm (640px) and collapses to an icon button.
  */
 export default function Header({
   isDarkMode,
@@ -31,7 +29,7 @@ export default function Header({
           aria-label="Open navigation menu"
           className="p-3 mr-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 md:hidden transition-colors"
         >
-          <Menu size={24} className="text-[#5f6368] dark:text-[#c4c7c5]" />
+          <span className="material-symbols-outlined text-[#5f6368] dark:text-[#c4c7c5]">menu</span>
         </button>
         <div className="flex items-center gap-2 cursor-pointer pl-2 md:pl-0">
           <span className="text-xl font-google-sans font-medium text-[#5f6368] dark:text-[#e3e3e3]">
@@ -40,10 +38,10 @@ export default function Header({
         </div>
       </div>
 
-      {/* Centre — full search bar (hidden on xs) */}
+      {/* Centre — full search bar, hidden on xs (<640px) */}
       <div className="hidden sm:flex flex-1 max-w-[720px] mx-6">
         <div className="w-full flex items-center bg-[#edf2fc] dark:bg-[#282a2c] rounded-full px-4 py-2.5 focus-within:bg-white dark:focus-within:bg-[#303134] focus-within:shadow-md transition-all border border-transparent">
-          <Search size={20} className="text-[#5f6368] dark:text-[#c4c7c5] mr-3 shrink-0" />
+          <span className="material-symbols-outlined text-[#5f6368] dark:text-[#c4c7c5] mr-3 shrink-0 text-[20px]">search</span>
           <input
             id="portfolio-search"
             type="text"
@@ -57,50 +55,51 @@ export default function Header({
 
       {/* Right — icon buttons + avatar */}
       <div className="flex items-center gap-1 md:gap-2 shrink-0">
-        {/* Mobile search icon */}
+
+        {/* Mobile search icon — visible only on xs */}
         <button
           id="mobile-search-btn"
           aria-label="Search"
           className="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors sm:hidden"
         >
-          <Search size={24} className="text-[#5f6368] dark:text-[#c4c7c5]" />
+          <span className="material-symbols-outlined text-[#5f6368] dark:text-[#c4c7c5]">search</span>
         </button>
 
-        {/* Dark/light toggle */}
+        {/* Dark/light toggle — hidden on xs */}
         <button
           id="theme-toggle-btn"
           onClick={onToggleDarkMode}
           aria-label="Toggle colour scheme"
-          className="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors hidden sm:block"
+          className="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors hidden sm:flex items-center justify-center"
         >
-          {isDarkMode
-            ? <Sun size={24} className="text-[#e3e3e3]" />
-            : <Moon size={24} className="text-[#5f6368]" />}
+          <span className="material-symbols-outlined text-[#5f6368] dark:text-[#e3e3e3]">
+            {isDarkMode ? 'light_mode' : 'dark_mode'}
+          </span>
         </button>
 
         <button
           id="help-btn"
           aria-label="Help"
-          className="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors hidden sm:block"
+          className="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors hidden sm:flex items-center justify-center"
         >
-          <HelpCircle size={24} className="text-[#5f6368] dark:text-[#c4c7c5]" />
+          <span className="material-symbols-outlined text-[#5f6368] dark:text-[#c4c7c5]">help</span>
         </button>
 
         <button
           id="apps-btn"
           aria-label="Apps"
-          className="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors hidden sm:block mr-2"
+          className="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors hidden sm:flex items-center justify-center mr-2"
         >
-          <Grid size={24} className="text-[#5f6368] dark:text-[#c4c7c5]" />
+          <span className="material-symbols-outlined text-[#5f6368] dark:text-[#c4c7c5]">apps</span>
         </button>
 
         {/* Profile avatar */}
         <div className="p-1">
           <div
             id="profile-avatar"
-            className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#0b57d0] dark:bg-[#a8c7fa] text-white dark:text-[#041e49] flex items-center justify-center font-google-sans font-medium text-sm md:text-lg cursor-pointer ring-2 ring-transparent hover:ring-gray-200 dark:hover:ring-gray-700 transition-all"
+            className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden cursor-pointer ring-2 ring-transparent hover:ring-gray-200 dark:hover:ring-gray-700 transition-all"
           >
-            DD
+            <img src="/profile.jpg" alt="Dulith Divisekara" className="w-full h-full object-cover" />
           </div>
         </div>
       </div>
