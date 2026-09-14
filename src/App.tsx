@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
-  Menu, Search, HelpCircle, Settings, Grid,
+  Menu, Search, HelpCircle, Grid,
   Home, User, Shield, Briefcase, Code, Mail,
   Moon, Sun, ChevronRight, X
 } from 'lucide-react';
@@ -24,7 +24,9 @@ export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeTab, setActiveTab] = useState('home');
   const [searchQuery, setSearchQuery] = useState('');
-  const sidebarRef = useRef(null);
+
+  // Typed as an HTMLElement so 'contains' works correctly
+  const sidebarRef = useRef<HTMLElement>(null);
 
   // Check system preference on initial load
   useEffect(() => {
@@ -35,8 +37,8 @@ export default function App() {
 
   // Close sidebar when clicking outside on mobile
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (sidebarRef.current && !sidebarRef.current.contains(event.target) && isMobileMenuOpen) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node) && isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
       }
     };
@@ -108,7 +110,6 @@ export default function App() {
               {/* Profile Avatar */}
               <div className="p-1">
                 <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#0b57d0] dark:bg-[#a8c7fa] text-white dark:text-[#041e49] flex items-center justify-center font-google-sans font-medium text-sm md:text-lg cursor-pointer ring-2 ring-transparent hover:ring-gray-200 dark:hover:ring-gray-700 transition-all">
-                  {/* [REPLACE WITH YOUR IMAGE TAG] -> <img src="your-image.jpg" alt="Profile" className="w-full h-full rounded-full object-cover" /> */}
                   DD
                 </div>
               </div>
@@ -186,7 +187,6 @@ export default function App() {
                     <div className="flex flex-col items-center text-center mb-10 animation-fade-in">
                       <div className="relative mb-4">
                         <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-[#0b57d0] dark:bg-[#a8c7fa] text-white dark:text-[#041e49] flex items-center justify-center font-google-sans font-medium text-3xl md:text-4xl shadow-sm ring-4 ring-white dark:ring-[#131314]">
-                          {/* [REPLACE WITH YOUR IMAGE] -> <img src="your-avatar.png" className="w-full h-full rounded-full object-cover"/> */}
                           DD
                         </div>
                       </div>
@@ -202,9 +202,6 @@ export default function App() {
                 {/* Content Switching based on Tab */}
                 <div className="space-y-6">
 
-                  {/* Reusable Google-style Card Component
-                  Uses Material 3 styling: 24px border radius, 1px border, surface colors
-                */}
                   {activeTab === 'home' && (
                       <>
                         <Card title="Personal info" description="Manage your contact info, location, and professional summary to make it easier for people to reach out." icon={<User className="text-[#0b57d0] dark:text-[#a8c7fa]" size={28}/>}>
@@ -307,8 +304,17 @@ export default function App() {
   );
 }
 
+// Interfaces for TypeScript definitions
+interface CardProps {
+  title: string;
+  description?: string;
+  icon?: React.ReactNode;
+  children?: React.ReactNode;
+  onClick?: () => void;
+}
+
 // MD3 Style Reusable Card Component
-function Card({ title, description, icon, children, onClick }) {
+function Card({ title, description, icon, children, onClick }: CardProps) {
   return (
       <div
           onClick={onClick}
@@ -338,8 +344,14 @@ function Card({ title, description, icon, children, onClick }) {
   );
 }
 
+interface ListItemProps {
+  title: string;
+  value: string;
+  border?: boolean;
+}
+
 // Reusable List Item for Cards
-function ListItem({ title, value, border = true }) {
+function ListItem({ title, value, border = true }: ListItemProps) {
   return (
       <div className={`flex items-center justify-between py-3 ${border ? 'border-b border-[#e1e3e1] dark:border-[#444746]' : ''} hover:bg-black/5 dark:hover:bg-white/5 -mx-5 px-5 md:-mx-6 md:px-6 transition-colors cursor-pointer group`}>
         <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-8 flex-1">
@@ -351,8 +363,12 @@ function ListItem({ title, value, border = true }) {
   );
 }
 
+interface BadgeProps {
+  text: string;
+}
+
 // Small Badge Component for Tags
-function Badge({ text }) {
+function Badge({ text }: BadgeProps) {
   return (
       <span className="inline-block px-3 py-1 bg-[#f0f4f9] dark:bg-[#303134] border border-[#e1e3e1] dark:border-[#444746] text-[#1f1f1f] dark:text-[#e3e3e3] text-xs font-medium rounded-lg">
       {text}
