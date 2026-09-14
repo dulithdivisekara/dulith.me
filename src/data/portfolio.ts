@@ -94,3 +94,33 @@ export const experienceData: Experience[] = [
     duration: '2024 - Present',
   },
 ];
+
+/* ─── New Quiz Data for Resources Tab ────────────────────────────────────── */
+
+export interface QuizQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  correctAnswerIndex: number;
+}
+
+export const quizData: QuizQuestion[] = [
+  {
+    id: 'q1',
+    question: 'In modern React, which hook is used to perform side effects in a functional component?',
+    options: ['useState', 'useMemo', 'useEffect', 'useReducer'],
+    correctAnswerIndex: 2
+  },
+  {
+    id: 'q2',
+    question: 'What does the "C" in the ACID properties of a database stand for?',
+    options: ['Consistency', 'Concurrency', 'Control', 'Calculated'],
+    correctAnswerIndex: 0
+  },
+  {
+    id: 'q3',
+    question: 'Which of the following is a core principle of Google Material Design 3?',
+    options: ['Skeuomorphic textures', 'Dynamic color and personalized themes', 'Heavy drop shadows', 'Web-safe colors only'],
+    correctAnswerIndex: 1
+  }
+];

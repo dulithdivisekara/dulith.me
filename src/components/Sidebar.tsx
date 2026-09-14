@@ -8,11 +8,12 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { id: 'home',     label: 'Overview',        icon: 'home' },
-  { id: 'about',    label: 'Personal info',   icon: 'person' },
-  { id: 'projects', label: 'Projects & work', icon: 'work' },
-  { id: 'skills',   label: 'Skills & tools',  icon: 'code' },
-  { id: 'contact',  label: 'Contact & links', icon: 'mail' },
+  { id: 'home',      label: 'Overview',        icon: 'home' },
+  { id: 'about',     label: 'Personal info',   icon: 'person' },
+  { id: 'projects',  label: 'Projects & work', icon: 'work' },
+  { id: 'resources', label: 'Resources',       icon: 'menu_book' },
+  { id: 'skills',    label: 'Skills & tools',  icon: 'code' },
+  { id: 'contact',   label: 'Contact & links', icon: 'mail' },
 ];
 
 export interface SidebarProps {
