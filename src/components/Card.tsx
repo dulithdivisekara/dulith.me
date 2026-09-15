@@ -1,3 +1,5 @@
+'use client';
+
 import type { ReactNode, KeyboardEvent } from 'react';
 
 export interface CardProps {

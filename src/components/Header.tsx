@@ -1,6 +1,9 @@
+'use client';
+
 import { useState } from 'react';
 import AppLauncher from './AppLauncher';
 import HelpModal from './HelpModal';
+import Link from 'next/link';
 
 export interface HeaderProps {
     isDarkMode: boolean;
@@ -29,20 +32,20 @@ export default function Header({
                         id="mobile-menu-btn"
                         onClick={onOpenMobileMenu}
                         aria-label="Open navigation menu"
-                        className="p-3 mr-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 md:hidden transition-colors"
+                        className="p-3 mr-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 md:hidden transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0b57d0]"
                     >
                         <span className="material-symbols-outlined text-[#5f6368] dark:text-[#c4c7c5]">menu</span>
                     </button>
-                    <div className="flex items-center gap-2 cursor-pointer pl-2 md:pl-0">
-            <span className="text-xl font-google-sans font-medium text-[#5f6368] dark:text-[#e3e3e3]">
-              Portfolio
-            </span>
-                    </div>
+                    <Link href="/" className="flex items-center gap-2 pl-2 md:pl-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0b57d0] rounded-md">
+                        <span className="text-xl font-google-sans font-medium text-[#5f6368] dark:text-[#e3e3e3]">
+                          Portfolio
+                        </span>
+                    </Link>
                 </div>
 
                 {/* Centre — full search bar */}
                 <div className="hidden sm:flex flex-1 max-w-[720px] mx-6">
-                    <div className="w-full flex items-center bg-[#edf2fc] dark:bg-[#303134] rounded-full px-4 py-2.5 focus-within:bg-white dark:focus-within:bg-[#303134] focus-within:shadow-[0_1px_3px_rgba(0,0,0,0.12),0_1px_2px_rgba(0,0,0,0.24)] transition-all border border-transparent group">
+                    <div className="w-full flex items-center bg-[#edf2fc] dark:bg-[#303134] rounded-full px-4 py-2.5 focus-within:bg-white dark:focus-within:bg-[#303134] focus-within:shadow-[0_1px_3px_rgba(0,0,0,0.12),0_1px_2px_rgba(0,0,0,0.24)] transition-all border border-transparent group focus-within:ring-2 focus-within:ring-[#0b57d0]">
                         <span className="material-symbols-outlined text-[#5f6368] dark:text-[#c4c7c5] mr-3 shrink-0 text-[20px]">search</span>
                         <input
                             id="portfolio-search"
@@ -55,7 +58,7 @@ export default function Header({
                         {searchQuery && (
                             <button
                                 onClick={() => onSearchChange('')}
-                                className="p-1 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-[#5f6368] dark:text-[#c4c7c5]"
+                                className="p-1 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-[#5f6368] dark:text-[#c4c7c5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0b57d0]"
                             >
                                 <span className="material-symbols-outlined text-[18px]">close</span>
                             </button>
@@ -65,24 +68,22 @@ export default function Header({
 
                 {/* Right — icon buttons + App Launcher + avatar */}
                 <div className="flex items-center gap-1 md:gap-2 shrink-0">
-
                     <button
                         id="theme-toggle-btn"
                         onClick={onToggleDarkMode}
                         aria-label="Toggle colour scheme"
-                        className="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors hidden sm:flex items-center justify-center"
+                        className="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors hidden sm:flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0b57d0]"
                     >
-            <span className="material-symbols-outlined text-[#5f6368] dark:text-[#e3e3e3]">
-              {isDarkMode ? 'light_mode' : 'dark_mode'}
-            </span>
+                        <span className="material-symbols-outlined text-[#5f6368] dark:text-[#e3e3e3]">
+                          {isDarkMode ? 'light_mode' : 'dark_mode'}
+                        </span>
                     </button>
 
-                    {/* Help Button linked to Modal */}
                     <button
                         id="help-btn"
                         onClick={() => setIsHelpOpen(true)}
                         aria-label="Help & Feedback"
-                        className="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors hidden sm:flex items-center justify-center"
+                        className="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors hidden sm:flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0b57d0]"
                         title="Help"
                     >
                         <span className="material-symbols-outlined text-[#5f6368] dark:text-[#c4c7c5]">help</span>
