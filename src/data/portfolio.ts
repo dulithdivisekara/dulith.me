@@ -97,30 +97,79 @@ export const experienceData: Experience[] = [
 
 /* ─── New Quiz Data for Resources Tab ────────────────────────────────────── */
 
+export interface QuizOption {
+  text: string;
+  isCorrect: boolean;
+  explanation: string;
+}
+
 export interface QuizQuestion {
-  id: string;
+  topic: string;
+  topicDesc: string;
+  topicFocus: string;
   question: string;
-  options: string[];
-  correctAnswerIndex: number;
+  options: QuizOption[];
 }
 
 export const quizData: QuizQuestion[] = [
   {
-    id: 'q1',
-    question: 'In modern React, which hook is used to perform side effects in a functional component?',
-    options: ['useState', 'useMemo', 'useEffect', 'useReducer'],
-    correctAnswerIndex: 2
+    topic: "Expert Systems",
+    topicDesc: "You correctly identified rule-based reasoning strategies (Forward Chaining) based on starting facts.",
+    topicFocus: "Review rule-based reasoning. Remember that Forward Chaining starts with known facts, while Backward Chaining starts with a goal.",
+    question: "An expert system evaluates rules to diagnose a medical patient. It starts by looking at observed symptoms like fever and cough, and gradually evaluates rules to reach a final diagnosis. Which reasoning strategy is being used?",
+    options: [
+      { text: "Backward Chaining", isCorrect: false, explanation: "Backward chaining starts with a hypothetical conclusion (goal) and works backward to see if the facts support it." },
+      { text: "Forward Chaining", isCorrect: true, explanation: "Correct. Forward chaining is data-driven: it starts with known facts (symptoms) and triggers rules forward to reach a conclusion." },
+      { text: "Support Vector Machines", isCorrect: false, explanation: "SVM is a machine learning algorithm, not an expert system reasoning method." },
+      { text: "Gini Impurity", isCorrect: false, explanation: "Gini Impurity is a metric used to split decision trees." }
+    ]
   },
   {
-    id: 'q2',
-    question: 'What does the "C" in the ACID properties of a database stand for?',
-    options: ['Consistency', 'Concurrency', 'Control', 'Calculated'],
-    correctAnswerIndex: 0
+    topic: "Ontologies",
+    topicDesc: "Great job distinguishing between broader categories (Classes) and specific real-world entities (Instances).",
+    topicFocus: "Brush up on Ontological elements to clearly distinguish between Classes, Instances, and Restrictions.",
+    question: "In the context of Ontologies, how is a specific, single real-world entity distinguished from a broader category?",
+    options: [
+      { text: "A Restriction of a Relationship", isCorrect: false, explanation: "Restrictions define constraints, not specific entities." },
+      { text: "A Class", isCorrect: false, explanation: "A Class defines the broad category (e.g., 'Car')." },
+      { text: "An Instance of a Class", isCorrect: true, explanation: "Correct. An Instance represents a specific entity (e.g., 'My Red 2018 Honda Civic') belonging to a Class." },
+      { text: "An Axiom", isCorrect: false, explanation: "An Axiom is a logical rule." }
+    ]
   },
   {
-    id: 'q3',
-    question: 'Which of the following is a core principle of Google Material Design 3?',
-    options: ['Skeuomorphic textures', 'Dynamic color and personalized themes', 'Heavy drop shadows', 'Web-safe colors only'],
-    correctAnswerIndex: 1
+    topic: "Data Preprocessing",
+    topicDesc: "You showed an excellent grasp of essential data preparation techniques like One-Hot Encoding for categorical variables.",
+    topicFocus: "Review preprocessing techniques. Encoding text categories into un-ordered binary indicators requires One-Hot Encoding.",
+    question: "Which data preprocessing technique creates separate binary indicator columns (0 or 1) for categorical variables without imposing an artificial numerical order?",
+    options: [
+      { text: "Variance Thresholding", isCorrect: false, explanation: "Removes features with identical values." },
+      { text: "Min-Max Scaling", isCorrect: false, explanation: "Scaling adjusts numerical ranges." },
+      { text: "Principal Component Analysis", isCorrect: false, explanation: "PCA is used for dimensionality reduction." },
+      { text: "One-Hot Encoding", isCorrect: true, explanation: "Correct. Converts categories into separate binary columns without mathematical superiority." }
+    ]
+  },
+  {
+    topic: "Regression Models",
+    topicDesc: "You perfectly understand core linear regression concepts, including interpreting slope parameters.",
+    topicFocus: "Review Ordinary Least Squares (OLS) equations. The slope (β₁) represents the change in Y per unit of X.",
+    question: "Given a simple linear regression line ŷ = β₀ + β₁x, what does the slope parameter β₁ represent?",
+    options: [
+      { text: "The baseline value of y when x is exactly zero", isCorrect: false, explanation: "This describes the intercept (β₀)." },
+      { text: "The expected change in y for a one-unit increase in x", isCorrect: true, explanation: "Correct. The slope tells us exactly how much the predicted output changes for every 1-unit step forward." },
+      { text: "The average squared error", isCorrect: false, explanation: "This describes MSE." },
+      { text: "The maximum threshold before overfitting", isCorrect: false, explanation: "Unrelated to regression slope definitions." }
+    ]
+  },
+  {
+    topic: "Classification Evaluation",
+    topicDesc: "You understand when to prioritize specialized evaluation metrics over general accuracy in critical systems.",
+    topicFocus: "Review evaluation metrics. In medical screening where missing a positive case is dangerous, Recall is much more important than Accuracy.",
+    question: "In medical disease screening, missing an actual positive patient case is far more dangerous than triggering a false alarm. Which evaluation metric should be prioritized and maximized?",
+    options: [
+      { text: "Accuracy", isCorrect: false, explanation: "Accuracy can be misleading when disease cases are rare." },
+      { text: "Precision", isCorrect: false, explanation: "Precision minimizes False Positives, the opposite of our goal." },
+      { text: "Recall (Sensitivity)", isCorrect: true, explanation: "Correct. Recall minimizes False Negatives, ensuring we catch as many actual positive cases as possible." },
+      { text: "Gini Impurity", isCorrect: false, explanation: "Used for decision trees, not final predictions." }
+    ]
   }
 ];
