@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && npx @opennextjs/cloudflare",
     "start": "next start",
     "lint": "next lint"
   },
@@ -17,7 +17,9 @@
     "react-helmet-async": "^3.0.0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260922.1",
     "@eslint/js": "^10.0.1",
+    "@opennextjs/cloudflare": "^1.20.6",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
@@ -29,6 +31,7 @@
     "postcss": "^8.5.28",
     "tailwindcss": "^3.4.19",
     "typescript": "~6.0.2",
-    "typescript-eslint": "^8.69.0"
+    "typescript-eslint": "^8.69.0",
+    "wrangler": "^4.135.0"
   }
 }

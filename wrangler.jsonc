@@ -1,0 +1,39 @@
+{
+	"name": "dulith-me",
+	"compatibility_date": "2024-09-23",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"main": ".open-next/worker.js",
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	// D1 Database binding
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "dulith-me-db",
+			"database_id": "da7c8920-d6dd-4888-a855-1c9bbeeca464"
+		},
+		{
+			"binding": "dulith_me_db",
+			"database_name": "dulith-me-db",
+			"database_id": "da7c8920-d6dd-4888-a855-1c9bbeeca464"
+		}
+	],
+	// R2 Bucket binding
+	"r2_buckets": [
+		{
+			"binding": "MEDIA",
+			"bucket_name": "dulith-me-media"
+		},
+		{
+			"bucket_name": "portfolio-certs",
+			"binding": "portfolio_certs"
+		}
+	],
+	"vars": {
+		"R2_PUBLIC_URL": "https://media.dulith.me"
+	}
+}

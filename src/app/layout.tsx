@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import ClientLayoutWrapper from '../components/ClientLayoutWrapper';
+import ClientLayoutWrapper from '@/components/layout/ClientLayoutWrapper';
 
 export const metadata: Metadata = {
   title: 'Google Account - Dulith Divisekara',

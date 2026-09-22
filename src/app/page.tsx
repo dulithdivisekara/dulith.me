@@ -1,5 +1,5 @@
-import Card from '../components/Card';
-import ListItem from '../components/ListItem';
+import Card from '@/components/ui/Card';
+import ListItem from '@/components/ui/ListItem';
 import Link from 'next/link';
 
 export default function Home() {

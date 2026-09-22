@@ -1,7 +1,0 @@
-(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,94151,e=>{"use strict";var i=e.i(43476);e.s(["default",0,function({title:e,description:t,icon:l,children:s,onClick:r,ariaLabel:d}){return(0,i.jsx)("div",{onClick:r,onKeyDown:e=>{r&&("Enter"===e.key||" "===e.key)&&(e.preventDefault(),r())},role:r?"button":void 0,tabIndex:r?0:void 0,"aria-label":r?d??e:void 0,className:`
-        bg-white dark:bg-[#1e1f20]
-        border border-[#e1e3e1] dark:border-[#444746]
-        rounded-[24px] overflow-hidden
-        transition-all duration-200
-        ${r?"cursor-pointer hover:bg-[#f8fafd] dark:hover:bg-[#303134] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0b57d0] focus-visible:outline-offset-2":""}
-      `,children:(0,i.jsxs)("div",{className:"p-5 md:p-6 flex items-start gap-4",children:[l&&(0,i.jsx)("div",{className:"shrink-0 bg-[#f0f4f9] dark:bg-[#282a2c] p-3 rounded-full",children:l}),(0,i.jsxs)("div",{className:"flex-1 min-w-0",children:[(0,i.jsx)("h2",{className:"text-lg md:text-[22px] font-google-sans font-medium text-[#1f1f1f] dark:text-[#e3e3e3] mb-1",children:e}),t&&(0,i.jsx)("p",{className:"text-[14px] leading-relaxed text-[#444746] dark:text-[#c4c7c5] mb-4 pr-4",children:t}),(0,i.jsx)("div",{className:"w-full",children:s})]})]})})}])}]);
